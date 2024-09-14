@@ -16,10 +16,10 @@ library(genetics.binaRies)
 
 
 # Data Path
-short.sleep.path <-  "C:/Users/Chris/OneDrive - The University of Melbourne/Sleep_Sumstat"
-GGE.path <-  "C:/Users/Chris/OneDrive - The University of Melbourne/Epi_Sumstat"
-export.path <-  "C:/Users/Chris/OneDrive - The University of Melbourne/Coloc_results"
-coloc.result.path <-  "C:/Users/Chris/OneDrive - The University of Melbourne/Coloc_results"
+GGE.path <-  " " # Directory to trait 1 sumstat
+short.sleep.path <-  " " # directory to trait 2 sumstat
+export.path <-  " "
+coloc.result.path <-  " "
 
 
 # Part A: Cleaning GWAS sumstats file
@@ -56,7 +56,7 @@ sleep.trait %>% is.na() %>% table() #No missing data
 # Part B: Extracting scanning regions from GGE traits.
 
 ### Step 1: Identify Lead SNPs for GGE, using leadSNPs file from FUMA 
-gge.lead.snps= vroom(file = "/Volumes/Lab_Bahlo/users/le.c/Data/Sleep_MR_Epilepsy/MRbase_FUMA/Caucasian_GGE_FUMA/leadSNPs.txt", 
+gge.lead.snps= vroom(file = " ", # path to FUMA_leadsnps.txt file 
                      delim ="\t", show_col_types = F)
 
 table(gge.lead.snps$p <5e-8) # All lead SNPs passed GWAS significant threshold as expected from FUMA setting
@@ -205,7 +205,7 @@ filtered_shortslep <-  filtered_shortslep[match(share_snps, filtered_shortslep$M
 identical(filtered_shortslep$MarkerName, filtered_shortslep$MarkerName)
 
 # Use ld_matrix_local of ieugwasr to generate LD matrix, given the 1000G_phase3 reference bim file
-plink_path <-  "/Volumes/Lab_Bahlo/users/le.c/PLINK"
+plink_path <-  " " #PLINK path
 
 # Creating matrix
 ld.matrix <-  ieugwasr::ld_matrix(
@@ -213,7 +213,7 @@ ld.matrix <-  ieugwasr::ld_matrix(
   with_alleles = FALSE, #Set this to FALSE to keep the original rsID
   pop = "EUR",
   plink_bin = genetics.binaRies::get_plink_binary(),
-  bfile = "/Users/le.c/Documents/EUR" # EUR bim file is saved locally in Documents folder
+  bfile = " " # EUR bim file
 ) 
 
 length(colnames(ld.matrix)) # Not all share_snps in LD.matrix => Need filter again
@@ -231,7 +231,7 @@ ld.matrix <-  ieugwasr::ld_matrix(
   with_alleles = FALSE, #Set this to FALSE to keep the original rsID
   pop = "EUR",
   plink_bin = genetics.binaRies::get_plink_binary(),
-  bfile = "/Users/le.c/Documents/EUR"
+  bfile = " " # EUR bim file
 ) 
 
 
@@ -249,7 +249,7 @@ identical(filtered_gge$MarkerName, filtered_shortslep$MarkerName) #Matching orde
 
 
 # Import EUR bim file (for alignment)
-EUR.bim <-  vroom("/Users/le.c/Documents/EUR.bim", delim = "\t", show_col_types = F)
+EUR.bim <-  vroom(" ", delim = "\t", show_col_types = F) # EUR bim file
 colnames(EUR.bim) <-  c("CHR", "MarkerName", "Genetic Distance" ,"BP", "Allele2", "Allele1") #Allele_2 = Reference Allele of bim file
 EUR.bim = EUR.bim %>% select(CHR, MarkerName, BP, Allele1, Allele2) # Select only important columns
 
