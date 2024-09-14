@@ -99,36 +99,9 @@ sleep.snps_in_region <-  do.call(rbind, lapply(1:nrow(regions), function(i) extr
 # Pre-analysis: Output the scanning regions before running coloc 
 unique(sleep.snps_in_region$region)
 
-# "1:237602083:238102083"
-# "2:57738194:58238194"    
-# "2:57958035:58458035"    
-# "2:58434939:58934939"    
-# "2:104219422:104719422" 
-# "2:191328172:191828172"  
-# "3:36040458:36540458"    
-# "3:50005305:50505305"  
-# "4:2983614:3483614"    
-# "4:30898846:31398846"  
-# "5:113971505:114471505"  
-# "5:136282351:136782351"
-# "7:41093524:41593524" 
-# "9:86179305:86679305"   
-# "10:103315960:103815960"
-# "10:132254139:132754139"
-# "12:52073461:52573461"   
-# "12:52078558:52578558"   
-# "12:81328851:81828851"   
-# "16:7094941:7594941"    
-# "17:7804860:8304860"    
-# "17:46149497:46649497" 
-# "19:1873928:2373928"  
-# "21:21427669:21927669"  
-# "21:31915561:32415561" 
-# "22:48387056:48887056"
-
 # Coloc Analysis: Plug and Play
 # Paste the region name (see above) to input_region, and run the script.
-input_region=  "2:57958035:58458035"
+input_region=  " " # For example: 2:57958035:58458035
 
 # Checking for any duplicated SNPs as it can cause issue with coloc analysis
 
